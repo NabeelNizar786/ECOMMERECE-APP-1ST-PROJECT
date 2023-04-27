@@ -52,6 +52,7 @@ admin_route.get('/addBanner',upload.single('image'),adminController.addBanner);
 admin_route.post('/addBanner',upload.single('image'),adminController.newBanner);
 admin_route.get('/products/editbanner/:id',auth.isLogin,adminController.loadeditBanner);
 admin_route.post('/products/editBanner/:id',upload.single('image'),auth.isLogin,adminController.editBanner);
+admin_route.get('/deleteBanner/:id',auth.isLogin,adminController.deleteBanner);
 
 // USER MANAGEMENT ROUTES //
 

@@ -26,7 +26,8 @@
     "randomstring": "^1.2.3",
     "razorpay": "^2.8.6",
     "twilio": "^4.9.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "zooming": "^2.1.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.21"

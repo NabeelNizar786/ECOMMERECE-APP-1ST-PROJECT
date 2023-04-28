@@ -169,7 +169,7 @@ const insertUser = async (req, res, next) => {
 
     // if email, mobile, and username are all unique, proceed with OTP verification
     const verifiedResponse = await client.verify.v2
-      .services("VAece0858150921ab8f186d5507bf982f7")
+      .services("VA49591df7df96905b7cc4c49898b34396")
       .verifications.create({
         to: `+91${mobile}`,
         channel: `sms`,
@@ -203,7 +203,7 @@ const otpVerify = async (req, res, next) => {
   try {
     const info = req.session.userData;
     const verifiedResponse = await client.verify.v2
-      .services("VAece0858150921ab8f186d5507bf982f7")
+      .services("VA49591df7df96905b7cc4c49898b34396")
       .verificationChecks.create({
         to: `+91${info.mno}`,
         code: otp,
@@ -253,7 +253,7 @@ const sendReset = async (req, res) => {
 
       res.render("changePassword");
       client.verify.v2
-        .services("VAece0858150921ab8f186d5507bf982f7")
+        .services("VA49591df7df96905b7cc4c49898b34396")
         .verifications.create({ to: `+91${req.body.mno}`, channel: "sms" })
         .then((verification) => {
           console.log(req.body.mno);
@@ -278,7 +278,7 @@ const verifyReset = async (req, res) => {
 
   try {
     const verification_check = await client.verify.v2
-      .services("VAece0858150921ab8f186d5507bf982f7")
+      .services("VA49591df7df96905b7cc4c49898b34396")
       .verificationChecks.create({ to: `+91${phone}`, code: otp });
 
     if (verification_check.status === "approved") {

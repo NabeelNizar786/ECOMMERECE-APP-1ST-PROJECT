@@ -7,6 +7,7 @@ const config = require('./config/Config');
 
 require('dotenv').config()
 config.mongooseConnection()
+
 const PORT = process.env.PORT;
 
 app.use(express.static(path.join(__dirname,'public')));

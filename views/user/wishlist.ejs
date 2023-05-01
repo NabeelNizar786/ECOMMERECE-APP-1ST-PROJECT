@@ -202,8 +202,15 @@
                           </div>
                         </div>
                       </td>
-                      <td width="15%" class="price">$<%= x.product.price %></td>
-                      <td width="15%"><span class="in-stock-box"><%= x.product.stock %></span></td>
+                      <td width="15%" class="price">₹<%= x.product.price %></td>
+                      <td width="15%">
+                        <% if (x.product.stock > 0) { %>
+                          <span class="in-stock-box">In Stock</span>
+                        <% } else { %>
+                          <span class="out-of-stock-box">Out of Stock</span>
+                        <% } %>
+                      </td>
+                      
                       <td>
                         <div onclick="addToCart('<%=x.product._id%>','<%=x.product.stock%>','<%=x.product.price%>')" type="button" class="flex-c-m stext-10 size-8 bor13 hov-btn3  trans-04 pointer m-tb-10" style="width: 140px;">
                           Add to Cart

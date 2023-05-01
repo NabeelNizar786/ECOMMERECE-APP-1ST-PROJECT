@@ -103,7 +103,7 @@ const loadDashboard = async(req,res,next)=>{
     $group: {
       _id: {
         $dateToString: {
-          format: "%d-%m-%Y",
+          format: "%Y-%m-%d",
           date: "$date"
         }
       },

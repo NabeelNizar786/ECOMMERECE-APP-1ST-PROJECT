@@ -100,8 +100,16 @@
               >
             </li>
             <li>
-              <a class="text-decoration-none" href="#"> <span>Availibility</span> : In Stock</a>
+              <a class="text-decoration-none">
+                <span>Availability:</span>
+                <% if (productDetails.stock <= 0) { %>
+                  <span class="badge bg-danger badge-xl">Out of Stock</span>
+                <% } else { %>
+                  <span class="badge bg-success badge-xl">In Stock</span>
+                <% } %>
+              </a>
             </li>
+            
           </ul>
           <p>
             <%= productDetails.description%>

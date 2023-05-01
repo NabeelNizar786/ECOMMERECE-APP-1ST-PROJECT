@@ -456,7 +456,12 @@ const categoryFilter = async(req,res,next)=> {
 
 
   } catch (error) {
-    next(error.message)
+    console.log(error.message);
+    if (error.message.includes("Cast to ObjectId failed")) {
+      res.status(404).render("404");
+    } else {
+      next(error.message);
+    }
   }
 }
 
@@ -1364,11 +1369,19 @@ const returnOrder = async(req,res,next)=> {
     const Return = await order.updateOne({_id:id},
       {$set:{status:status}})
 
-      res.json({success:true})
+      if (Return) {
+        const orderdata = await order.findOne({ _id: id })
+        if (orderdata.paymentType === 'COD' || orderdata.paymentType === 'ONLINE' || orderdata.paymentType === 'WALLET') {
+            const refund = await User.updateOne({ _id: orderdata.userId },
+                { $inc: { wallet: orderdata.total } })
+        }
 
-  } catch (error) {
-    next(error.message)
-  }
+            res.json({ success: true })
+
+    }
+} catch (error) {
+    console.log(error.message);
+}
 }
 
 const orderDetails = async(req,res,next)=> {

@@ -54,10 +54,14 @@
           <a onclick="cancellOrder('<%=x._id%>')" type="button" class="btn btn-outline-warning btn-sm  mb-2" href="#">Cancel</a>
         </td>
         <%} else if(x.status==='Delivered'){ %>
-        <td>
-          <!-- <a type="button" class="btn btn-outline-warning btn-sm  mb-2" href="#">Cancell</a> -->
-          <a onclick="returnOrder('<%=x._id%>')" type="button" class="btn btn-outline-danger btn-sm  mb-2" href="#">Return</a>
-        </td>
+          <td>
+            <% if (x.status === 'Delivered' && ((new Date() - new Date(x.date)) / (1000 * 60 * 60 * 24)) <= 7) { %>
+              <a onclick="returnOrder('<%=x._id%>')" type="button" class="btn btn-outline-danger btn-sm mb-2" href="#">Return</a>
+            <% } else { %>
+              
+            <% } %>
+          </td>
+          
         <% }else{ %>
         <td>
           <%= x.status %>

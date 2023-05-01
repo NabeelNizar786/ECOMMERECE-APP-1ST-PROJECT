@@ -122,14 +122,24 @@
                 <a href="/singleProduct?id=<%= x._id %>">
                   <i class="ti-eye"></i>
                 </a>
-                <a href="#"
-                <button class="btn-addwish-b2 dis-block pos-relative " onclick="addToWishlist('<%= x._id %>')">
-                  <i class="ti-heart"></i>
-                </button>
-                </a>
-                <a href="#" class="btn-addwish-b2 dis-block pos-relative " onclick="addToCart('<%=x._id%>','<%=x.stock%>','<%=x.price%>')">
-                  <i class="ti-shopping-cart"></i>
-                </a>
+                <% if (typeof user !== 'undefined') { %>
+                  <!-- user is logged in, use original links -->
+                  <a class="btn-addwish-b2 dis-block pos-relative " onclick="addToWishlist('<%= x._id %>')">
+                      <i class="ti-heart"></i>
+                  </a>
+                  <a href="#" class="btn-addwish-b2 dis-block pos-relative " onclick="addToCart('<%=x._id%>','<%=x.stock%>','<%=x.price%>')">
+                    <i class="ti-shopping-cart"></i>
+                  </a>
+                <% } else { %>
+                  <!-- user is not logged in, change links to /login -->
+                  <a href="/login">
+                      <i class="ti-heart"></i>
+                  </a>
+                  <a href="/login" class="btn-addwish-b2 dis-block pos-relative ">
+                    <i class="ti-shopping-cart"></i>
+                  </a>
+                <% } %>
+                
               </div>
             </div>
             <div class="product-btm">

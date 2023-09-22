@@ -8,7 +8,7 @@ const config = require('./config/Config');
 require('dotenv').config()
 config.mongooseConnection()
 
-const PORT = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.static(path.join(__dirname,'assets')));
@@ -55,6 +55,6 @@ app.use((req, res) => {
 
 // FOR CONNECTING TO THE SERVER //
 
-app.listen(PORT,()=>{
+app.listen(port,()=>{
   console.log("SERVER STARTED");
 });
